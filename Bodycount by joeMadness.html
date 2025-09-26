@@ -104,7 +104,7 @@ var LZString=function(){var r=String.fromCharCode,o="ABCDEFGHIJKLMNOPQRSTUVWXYZa
 		<div id="init-lacking"><p>Browser lacks capabilities required to play.</p><p>Upgrade or switch to another browser.</p></div>
 		<div id="init-loading"><div>Loading&hellip;</div></div>
 	</div>
-	<tw-storydata name="Bodycount by joeMadness" startnode="14" creator="Twine" creator-version="2.10.0" format="SugarCube" format-version="2.37.3" ifid="A584603A-552D-4636-A191-8410FA8D8316" options="" tags="" zoom="0.6" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+	<tw-storydata name="Bodycount by joeMadness" startnode="6" creator="Twine" creator-version="2.10.0" format="SugarCube" format-version="2.37.3" ifid="A584603A-552D-4636-A191-8410FA8D8316" options="" tags="" zoom="0.6" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display+SC:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Italianno&display=swap');
 :root {
@@ -337,7 +337,7 @@ Setting.addList("fontSize", {
 	onInit		: resizeFont,
 	onChange	: resizeFont
 });
-</script><tw-tag name="data" color="green"></tw-tag><tw-tag name="ui" color="green"></tw-tag><tw-tag name="game-info" color="orange"></tw-tag><tw-tag name="no-return" color="none"></tw-tag><tw-tag name="code" color="red"></tw-tag><tw-tag name="changing-stats" color="blue"></tw-tag><tw-passagedata pid="1" name="warning" tags="" position="100,100" size="100,100">&lt;!-- styling for the splash screen - hides all the menus only on this passage --&gt;
+</script><tw-tag name="data" color="green"></tw-tag><tw-tag name="ui" color="green"></tw-tag><tw-tag name="game-info" color="orange"></tw-tag><tw-tag name="no-return" color="none"></tw-tag><tw-tag name="code" color="red"></tw-tag><tw-tag name="changing-stats" color="blue"></tw-tag><tw-tag name="mission" color="yellow"></tw-tag><tw-passagedata pid="1" name="warning" tags="" position="100,100" size="100,100">&lt;!-- styling for the splash screen - hides all the menus only on this passage --&gt;
 &lt;style&gt;
 #ui-bar {display:none;}
 #passages {width:100vw;margin:0;background-image:var(--banner-top),var(--banner-bottom);background-repeat:no-repeat;background-size:50%;background-position:top center, bottom center;overflow:hidden;scrollbar-width:none;font-family:var(--header-font);transition:0s;padding:0;}
@@ -391,12 +391,19 @@ DESCRIPCIÓN.
 
 [[Go to your flat.|departamentMC]]
 [[Knock in the door of departament 1|Departament 1]]
-[[Knock in the door of ARRENDATARIA departament|tiffanyFlat]]
+&lt;&lt;if $tiffanyMissionCompleted1 is false&gt;&gt;\
+[[Meet with Tiffany in her flat(WIP)|tiffanyMission1_1]]
+&lt;&lt;else&gt;&gt;\
+[[Knock in the door of Tiffany departament|tiffanyFlat]]
+&lt;&lt;/if&gt;&gt;\
 [[Knock in the door of departament 3|Departament 3]]
 [[Leave block of departaments|slums]]
 </tw-passagedata><tw-passagedata pid="9" name="roomMC" tags="" position="800,300" size="100,100">[[Sleep in the couch|sleepLogic]]
 
-[[Leave to the living room.|departamentMC]]</tw-passagedata><tw-passagedata pid="10" name="kitchenMC" tags="" position="700,400" size="100,100">[[Leave to the living room.|departamentMC]]</tw-passagedata><tw-passagedata pid="11" name="Departament 1" tags="" position="350,750" size="100,100">[[Leave.|blockDepartaments]]</tw-passagedata><tw-passagedata pid="12" name="tiffanyFlat" tags="" position="1000,650" size="100,100">[[Leave.|blockDepartaments]]</tw-passagedata><tw-passagedata pid="13" name="Departament 3" tags="" position="600,650" size="100,100">PARA EL FUTURO.
+[[Leave to the living room.|departamentMC]]</tw-passagedata><tw-passagedata pid="10" name="kitchenMC" tags="" position="700,400" size="100,100">[[Leave to the living room.|departamentMC]]</tw-passagedata><tw-passagedata pid="11" name="Departament 1" tags="" position="125,650" size="100,100">[[Leave.|blockDepartaments]]</tw-passagedata><tw-passagedata pid="12" name="tiffanyFlat" tags="" position="1000,650" size="100,100">FOTO DEL DEPARTAMENTO DE TIFFANY.
+DESCRIPCIÓN DEL DEPARTAMENTO DESPINTADO.
+
+[[Leave.|blockDepartaments]]</tw-passagedata><tw-passagedata pid="13" name="Departament 3" tags="" position="125,750" size="100,100">PARA EL FUTURO.
 
 [[Leave.|blockDepartaments]]</tw-passagedata><tw-passagedata pid="14" name="slums" tags="" position="800,900" size="100,100">AGREGAR PRIMERA VISITA DE MC AL BARRIO. REFLEXIONAR SOBRE LO QUE SIGUE. HAY QUE GENERAR DINERO. 
 
@@ -444,13 +451,14 @@ BREVE DESCRIPCION DE ULLISE SEÑALANDOTE LA MOTO, QUE HAY PEDIDOS LISTOS.
 
 &lt;&lt;set $day to 0&gt;&gt;
 &lt;&lt;set $nameMC to null&gt;&gt;
+&lt;&lt;set $energy to 0&gt;&gt;
 &lt;&lt;set $strength to 0&gt;&gt;
 &lt;&lt;set $karma to 0&gt;&gt;
 &lt;&lt;set $money to 0&gt;&gt;
 &lt;&lt;set $reputation to 0&gt;&gt;
 &lt;&lt;set $bodycountSex to 0&gt;&gt;
 &lt;&lt;set $bodycountDeath to 0&gt;&gt;
-&lt;&lt;set $energy to 0&gt;&gt;
+
 
 CHOICES LIFE.
 &lt;&lt;set $defaultPath to false&gt;&gt;
@@ -465,8 +473,12 @@ PIZZAPARLOR JOB.
 &lt;&lt;set $pizzaJob to false&gt;&gt;
 &lt;&lt;set $hasMetUlisse to false&gt;&gt;
 
-MISIONES.
-&lt;&lt;set </tw-passagedata><tw-passagedata pid="21" name="StorySubtitle" tags="ui" position="1725,100" size="100,100">An interactive fiction game.</tw-passagedata><tw-passagedata pid="22" name="StoryMenu" tags="ui" position="1625,200" size="100,100">&lt;&lt;link &quot;Character&quot; &quot;Character&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
+MISSION LOGIC.
+
+TIFFANYMISSIONS.
+&lt;&lt;set $hasMetTiffany to false&gt;&gt;
+&lt;&lt;set $tiffanyMissionCompleted1 to false&gt;&gt;
+</tw-passagedata><tw-passagedata pid="21" name="StorySubtitle" tags="ui" position="1725,100" size="100,100">An interactive fiction game.</tw-passagedata><tw-passagedata pid="22" name="StoryMenu" tags="ui" position="1625,200" size="100,100">&lt;&lt;link &quot;Character&quot; &quot;Character&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;Codex&quot; &quot;Codex&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;Credits&quot; &quot;Credits&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;Back&quot;&gt;&gt;&lt;&lt;if tags().includes(&quot;game-info&quot;)&gt;&gt;&lt;&lt;goto $return&gt;&gt;&lt;&lt;else&gt;&gt;&lt;&lt;run Engine.backward()&gt;&gt;&lt;&lt;/if&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="23" name="StoryDisplayTitle" tags="ui" position="1725,200" size="100,100">Bodycount</tw-passagedata><tw-passagedata pid="24" name="StoryAuthor" tags="ui" position="1625,300" size="100,100"></tw-passagedata><tw-passagedata pid="25" name="StoryCaption" tags="ui" position="1725,300" size="100,100">Made in SugarCube 2.34.1.</tw-passagedata><tw-passagedata pid="26" name="Credits" tags="credits game-info no-return" position="1825,100" size="100,100">&lt;ul&gt;
@@ -558,6 +570,32 @@ ULISSE LE MUESTRA LA MOTO HECHA PEDAZO EN EL CALLEJÓN Y LE DA LAS LLAVES.
 [[TERMINAR DE TRABAJAR|pizzaParlour]]
 
 
+</tw-passagedata><tw-passagedata pid="36" name="tiffanyMission1_1" tags="mission" position="1000,550" size="100,100">FOTO DEL DEPARTAMENTO DESPINTADO.
+BREVE DESCRIPCIÓN DEL DEPARTAMENTO DESPINTADO Y MUEBLES NUEVOS COMPRADOS.
+
+&lt;&lt;if $hasMetTiffany is false&gt;&gt;\
+T: VECINO, BIENVENIDO A MI CASA. ESTOY REMODELANDO TODO EL DEPARTAMENTO PERDÓN POR LOS MUEBLES, BLA BLA. (PERSONALIDAD AHI BIEN DE SUMISA)
+MC: LINDO LUGAR. (PRIMERA VEZ QUE MC ENTRA AL DEPTO DE LA VIEJA ESTA)
+T: ESTOY PRECISANDO DE UN PINTOR, TE INTERESA PINTARME LA HABITACIÓN? TE DOY $50.
+[[SÍ. ME INTERESA EL TRABAJO. A TRABAJAR.|tifannyMission1_2]]
+[[QUIZÁS OTRO MOMENTO VECINA. ESTOY ADAPTANDOME.|blockDepartaments]]
+&lt;&lt;set $hasMetTiffany to true&gt;&gt;\
+&lt;&lt;else&gt;&gt;\
+HOLA VECINO, ¿VENIS POR UNA TAZA DE CAFÉ?
+[[TE LO AGRADEZCO PERO VENGO POR EL TRABAJO DE PINTOR QUE ME DIJISTE.|tifannyMission1_2]]
+[[QUIZÁS EN OTRO MOMENTO VECINA. ESTOY ADAPTANDOME.|blockDepartaments]]
+&lt;&lt;/if&gt;&gt;\
+
+</tw-passagedata><tw-passagedata pid="37" name="tifannyMission1_2" tags="mission" position="1100,550" size="100,100">MC SE PONE A PINTAR EL LUGAR. TIFFANY DE VEZ EN CUANDO VIENE A CHEQUEAR COMO ESTA EL TRABAJO, LA VIEJA SEDUCE DE VEZ EN CUANDO A MC. TIFFANY LE DICE QUE ESTA DIVORCIADA, SOLA Y QUE SUS 2 HIJOS ESTÁN EN OTRA CIUDAD ESTUDIANDO.
+
+AGREGAR ACÁ IMAGEN DE TIFFANY MOVIENDO EL CULO O Q SE YO ALGO ASÍ.
+
+MC TERMINA CON EL TRABAJO.
+TIFFANY LE AGRADECE Y LE DA $30 POR EL TRABAJO.
+&lt;&lt;set $tiffanyMissionCompleted1 to true&gt;&gt;
+&lt;&lt;set $money to $money + 30&gt;&gt;
+
+[[CANSADO DEL TRABAJO, VUELVES A TU DEPARTAMENTO.|departamentMC]]
 </tw-passagedata></tw-storydata>
 	<script id="script-sugarcube" type="text/javascript">
 	/*! SugarCube JS */
